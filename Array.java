@@ -78,5 +78,22 @@ public class Array{
         }
         return ans;
     }
+
+    public int buyAndSellStock(int[] prices) {
+        int max = 0;
+        int left = 0;
+        int right = 0;
+        while (right < prices.length) {
+            if(prices[right] - prices[left] < 0) {
+                left++;
+                continue;
+            }
+            int profit = prices[right] - prices[left];
+            if(profit > max) 
+                max = profit;
+            right++;
+        }
+        return max;
+    }
 }
 
