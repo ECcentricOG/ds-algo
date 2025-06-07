@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Array{
 
@@ -94,6 +96,30 @@ public class Array{
             right++;
         }
         return max;
+    }
+
+    public static int kadanesAlgorithm(int[] nums) {
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if(sum > max) {
+                max = sum;
+            }
+            if(sum < 0) {
+                sum = 0;
+            }
+        }
+        return max;
+    }
+
+    public static boolean containsDuplicate(int[] nums) { 
+        Set<Integer> tracker = new TreeSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if(tracker.contains(nums[i])) return true;
+            tracker.add(nums[i]);
+        }
+        return false;
     }
 }
 
