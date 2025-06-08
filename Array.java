@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -120,6 +121,24 @@ public class Array{
             tracker.add(nums[i]);
         }
         return false;
+    }
+
+    public static List<Integer> majorityElement(int[] nums) {
+        List<Integer> ans = new ArrayList<>();
+        Map<Integer, Integer> tracker = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if(tracker.containsKey(nums[i])) {
+                tracker.put(nums[i], tracker.get(nums[i]) + 1);
+            } else {
+                tracker.put(nums[i], 1);
+            }
+        }
+        for(int num : nums) {
+            if(tracker.get(num) > nums.length / 3 && !ans.contains(num)) {
+                ans.add(num);
+            }
+        }
+        return ans;
     }
 }
 
